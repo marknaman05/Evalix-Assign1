@@ -1,12 +1,15 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const axios = require('axios');
 
 const app = express();
+dotenv.config();
 
 app.get("/:id", (req, res) => {
     const id = req.params.id;
 
-    const appid = "AIzaSyAPd9VvZfkQzWUwwnw3Kr4KFrHEOB4UvaU";
+const appid = process.env.API;
+
     const url = "https://www.googleapis.com/books/v1/volumes?key=" + appid + "&q=" + id;
 
     axios.get(url).then((response) => {
